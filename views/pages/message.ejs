@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <link
+   rel="stylesheet"
+   href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
+  />
+
+  <style>
+   .gradient {
+    background-image: linear-gradient(
+     -225deg,
+     #a3ffd9 0%,
+     #25b39b 100%
+    );
+   }
+
+   .go-to-app {
+    background-color: #f39f86;
+    background-image: linear-gradient(
+     315deg,
+     #a5f386 0%,
+     #01c7b6 74%
+    );
+   }
+   .github {
+    background-color: #f39f86;
+    background-image: linear-gradient(
+     315deg,
+     #000000 0%,
+     #01c7b6 74%
+    );
+   }
+
+   /* Custom code for the demo */
+  </style>
+ </head>
+
+ <body
+  class="gradient leading-relaxed tracking-wide flex flex-col"
+ >
+  <div
+   class="container mx-auto h-screen"
+  >
+   <div
+    class="text-center px-3 lg:px-0"
+   >
+    <h1
+     class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight"
+    >
+     Main Hero Message to sell yourself!
+    </h1>
+    <p
+     class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8"
+    >
+     Sub-hero message, not too long and
+     not too short. Make it just right!
+    </p>
+
+    <button
+     class="go-to-app mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48"
+    >
+     Go-To-App
+    </button>
+
+    <button
+     class="github mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48"
+    >
+     Code
+    </button>
+   </div>
+
+   <div
+    class="flex items-center w-full mx-auto content-end"
+   ></div>
+  </div>
+ </body>
+</html>

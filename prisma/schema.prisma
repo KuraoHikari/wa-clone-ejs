@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model User {
+    id         Int      @id @default(autoincrement())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    email       String   @unique
+    password    String
+    contacts    Contact[]
+    messages    Message[]
+
+    @@map("users")
+}
+
+model Contact {
+    id          Int      @id @default(autoincrement())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    userId      Int
+    userFriend  Int         
+    friends User @relation(fields: [userFriend], references: [id], onDelete: Cascade)
+
+    @@map("contacts")
+}
+
+model Message {
+    id        Int      @id @default(autoincrement())
+    from      Int
+    to        Int
+    text      String
+    Image     String
+    userId User @relation(fields: [from], references: [id], onDelete: Cascade)
+
+    @@map("messages")
+}

@@ -13,6 +13,7 @@ async function compareHash(
  password,
  hash
 ) {
+ console.log(password);
  return await compare(password, hash);
 }
 

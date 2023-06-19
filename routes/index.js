@@ -1,14 +1,17 @@
 const { Router } = require("express");
 const authRouter = require("./auth.router");
 const messageRouter = require("./message.router");
+const auth = require("../middleware/auth");
 
 const router = Router();
-
-router.use(authRouter);
 
 router.get("/", (req, res) => {
  res.render("pages/index");
 });
+
+router.use(authRouter);
+
+router.use(auth);
 
 router.use(messageRouter);
 

@@ -11,7 +11,7 @@ const {
 const prisma = new PrismaClient();
 
 async function authenticate(
- email,
+ username,
  password,
  done
 ) {
@@ -19,9 +19,11 @@ async function authenticate(
   const user =
    await prisma.user.findUnique({
     where: {
-     email,
+     email: username,
     },
    });
+
+  console.log(user);
 
   const isPasswordValid =
    await compareHash(
@@ -30,7 +32,9 @@ async function authenticate(
    );
 
   if (!isPasswordValid)
-   throw new Error("Wrong password");
+   throw new Error(
+    "just create a new fuking account"
+   );
 
   /*
       done adalah callback, parameter pertamanya adalah error,
@@ -50,7 +54,7 @@ async function authenticate(
 passport.use(
  new LocalStrategy(
   {
-   emailField: "email",
+   usernameField: "email",
    passwordField: "password",
   },
   authenticate
@@ -60,9 +64,10 @@ passport.use(
 /* Serialize dan Deserialize
     Cara untuk membuat sesi dan menghapus sesi
  */
-passport.serializeUser((user, done) =>
- done(null, user.id)
-);
+passport.serializeUser((user, done) => {
+ console.group(user);
+ return done(null, user.id);
+});
 passport.deserializeUser(
  async (id, done) =>
   done(

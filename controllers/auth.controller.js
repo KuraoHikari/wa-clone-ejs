@@ -33,7 +33,7 @@ class AuthController {
    });
 
    res.redirect("/login");
-  } catch (error) {
+  } catch (err) {
    if (
     err instanceof
     Prisma.PrismaClientKnownRequestError
@@ -41,19 +41,22 @@ class AuthController {
     if (err.code === "P2002") {
      req.flash(
       "error",
-      "A category with this name is already in use"
+      "damnn your email is already sold out :v"
      );
     }
    }
-   res.reder("/register");
+   res.render("pages/auth/register");
   }
  }
- static login(req, res) {
-  passport.authenticate("local", {
-   successRedirect: "/message",
-   failureRedirect: "/login",
-   failureFlash: true,
-  })(req, res, next);
+ static async login(req, res, next) {
+  return await passport.authenticate(
+   "local",
+   {
+    successRedirect: "/message",
+    failureRedirect: "/login",
+    failureFlash: true,
+   }
+  )(req, res, next);
  }
  static async logout(req, res, next) {
   req.logout((err) => {
